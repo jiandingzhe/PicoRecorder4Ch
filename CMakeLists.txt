@@ -63,3 +63,9 @@ target_link_libraries(PicoRecorder4Ch
 
 pico_add_extra_outputs(PicoRecorder4Ch)
 
+# add tinyusb
+set(tinyusb_path ${PICO_SDK_PATH}/lib/tinyusb)
+file(GLOB_RECURSE tinyusb_source_files ${tinyusb_path}/src/*.c)
+target_sources(PicoRecorder4Ch PRIVATE ${tinyusb_source_files})
+target_include_directories(PicoRecorder4Ch PUBLIC ${tinyusb_path}/src)
+target_compile_definitions(PicoRecorder4Ch PUBLIC -DCFG_TUSB_MCU=OPT_MCU_RP2040)
